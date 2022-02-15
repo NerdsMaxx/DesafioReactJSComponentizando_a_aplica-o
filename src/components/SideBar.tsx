@@ -13,12 +13,12 @@ interface GenreResponseProps {
   title: string;
 }
 
-interface Functions{
-  handleClickButton: Function;
-  getSelectedGenreId: Function;
+interface SideBarProps{
+  handleClickButton: (id: number) => void;
+  getSelectedGenreId: () => number;
 }
 
-export function SideBar(props: Functions){
+export function SideBar({handleClickButton, getSelectedGenreId}: SideBarProps){
   // Complete aqui
   const [genres, setGenres] = useState<GenreResponseProps[]>([]);
 
@@ -38,8 +38,8 @@ export function SideBar(props: Functions){
             key={String(genre.id)}
             title={genre.title}
             iconName={genre.name}
-            onClick={() => props.handleClickButton(genre.id)}
-            selected={props.getSelectedGenreId() === genre.id} />
+            onClick={() => handleClickButton(genre.id)}
+            selected={getSelectedGenreId() === genre.id} />
         ))}
       </div>
     </nav>
